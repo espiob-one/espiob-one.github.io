@@ -155,9 +155,22 @@
   .slot-img:hover{transform:translateY(-2px);border-color:var(--accent)}
 
   /* ---- CAD GALLERY ---- */
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:880px){.gallery{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.gallery{grid-template-columns:1fr}}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .filter{
+    font-family:"JetBrains Mono",monospace;font-size:12px;
+    padding:6px 14px;background:transparent;color:var(--ink-dim);
+    border:1px solid var(--line);cursor:pointer;letter-spacing:.05em;
+    transition:border-color .2s,color .2s,background .2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .filter:hover{border-color:var(--accent);color:var(--ink)}
+  .filter.on{border-color:var(--accent);color:var(--accent);background:rgba(255,138,61,.05)}
+  .filter .cnt{font-size:10px;opacity:.6}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:980px){.gallery{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:420px){.gallery{grid-template-columns:1fr}}
+  .gitem.hide{display:none}
   .gitem{
     position:relative;border:1px solid var(--line);background:#f4f5f7;
     aspect-ratio:4/3;overflow:hidden;cursor:pointer;
@@ -373,43 +386,262 @@
       <span class="num">02·b</span>
       <span class="label">Galería · SolidWorks</span>
     </div>
-    <p style="color:var(--ink-dim);max-width:55ch;margin-bottom:32px">Piezas y ensambles modelados durante las certificaciones CSWA, CSWP, Simulation, Sustainability, Additive y Electrical. Haz clic en cualquiera para verla en grande.</p>
+    <p style="color:var(--ink-dim);max-width:55ch;margin-bottom:24px">82 piezas y ensambles modelados durante las certificaciones CSWA, CSWP, Simulation, Additive, Electrical y un curso de mecanismos de precisión. Filtra por categoría o haz clic en cualquier pieza para verla en grande.</p>
+    <div class="filters">
+      <button class="filter on" data-filter="all">Todas <span class="cnt">82</span></button>
+      <button class="filter" data-filter="cswa">CSWA <span class="cnt">33</span></button>
+      <button class="filter" data-filter="cswp">CSWP <span class="cnt">11</span></button>
+      <button class="filter" data-filter="asm">Ensambles <span class="cnt">28</span></button>
+      <button class="filter" data-filter="mech">Mecanismos <span class="cnt">3</span></button>
+      <button class="filter" data-filter="sim">Simulación <span class="cnt">6</span></button>
+      <button class="filter" data-filter="am">3D Print <span class="cnt">1</span></button>
+    </div>
     <div class="gallery">
-      <div class="gitem" data-src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" data-cap="Gripper Assembly · vista explosionada">
-        <img src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" alt="Gripper Assembly"><div class="meta"><span>Gripper · explosionado</span><span class="tag">ASM</span></div>
+      <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Base.png" data-cap="Base · Connecting Rod">
+        <img loading="lazy" src="renders/Connecting_Rod_Assembly_(1)_Base.png" alt="Base"><div class="meta"><span>Base</span><span class="tag">Connecting Rod</span></div>
       </div>
-      <div class="gitem" data-src="renders/CSWA_A11.-Ensamblajes_2.png" data-cap="Mecanismo tipo tijera · ensamble multi-pieza">
-        <img src="renders/CSWA_A11.-Ensamblajes_2.png" alt="Mecanismo tijera"><div class="meta"><span>Mecanismo tijera</span><span class="tag">CSWA</span></div>
+      <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Connecting_Rod.png" data-cap="Connecting Rod · Connecting Rod">
+        <img loading="lazy" src="renders/Connecting_Rod_Assembly_(1)_Connecting_Rod.png" alt="Connecting Rod"><div class="meta"><span>Connecting Rod</span><span class="tag">Connecting Rod</span></div>
       </div>
-      <div class="gitem" data-src="renders/Cswp_A10_estudio_mov.png" data-cap="Estudio de movimiento · ensamble con manivela">
-        <img src="renders/Cswp_A10_estudio_mov.png" alt="Estudio de movimiento"><div class="meta"><span>Estudio de movimiento</span><span class="tag">CSWP</span></div>
+      <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Connector_Block.png" data-cap="Connector Block · Connecting Rod">
+        <img loading="lazy" src="renders/Connecting_Rod_Assembly_(1)_Connector_Block.png" alt="Connector Block"><div class="meta"><span>Connector Block</span><span class="tag">Connecting Rod</span></div>
       </div>
-      <div class="gitem" data-src="renders/CSWA_EXAM.png" data-cap="Pieza del examen CSWA · modelado complejo">
-        <img src="renders/CSWA_EXAM.png" alt="Pieza examen CSWA"><div class="meta"><span>Pieza examen</span><span class="tag">CSWA</span></div>
+      <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Wheel_component.png" data-cap="Wheel component · Connecting Rod">
+        <img loading="lazy" src="renders/Connecting_Rod_Assembly_(1)_Wheel_component.png" alt="Wheel component"><div class="meta"><span>Wheel component</span><span class="tag">Connecting Rod</span></div>
       </div>
-      <div class="gitem" data-src="renders/CSWA_PiezaBonus.png" data-cap="Pieza bonus · acabados torneados">
-        <img src="renders/CSWA_PiezaBonus.png" alt="Pieza bonus"><div class="meta"><span>Pieza bonus</span><span class="tag">CSWA</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A11.-Ensamblajes_2.png" data-cap="A11. Ensamblajes 2 · CSWA">
+        <img loading="lazy" src="renders/CSWA_A11.-Ensamblajes_2.png" alt="A11. Ensamblajes 2"><div class="meta"><span>A11. Ensamblajes 2</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" data-cap="Examen de ejemplo CSWP · pieza avanzada">
-        <img src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" alt="Examen CSWP"><div class="meta"><span>Examen CSWP</span><span class="tag">CSWP</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A13._Manejo_de_planos.png" data-cap="A13. Manejo de planos · CSWA">
+        <img loading="lazy" src="renders/CSWA_A13._Manejo_de_planos.png" alt="A13. Manejo de planos"><div class="meta"><span>A13. Manejo de planos</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/CSWA_A5.-Solido_de_revolución.png" data-cap="Sólido de revolución · operación de revolve">
-        <img src="renders/CSWA_A5.-Solido_de_revolución.png" alt="Sólido de revolución"><div class="meta"><span>Sólido de revolución</span><span class="tag">CSWA</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A3-Croquizado.png" data-cap="A3-Croquizado · CSWA">
+        <img loading="lazy" src="renders/CSWA_A3-Croquizado.png" alt="A3-Croquizado"><div class="meta"><span>A3-Croquizado</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/Connecting_Rod_Assembly_(1)_Base.png" data-cap="Connecting Rod Assembly · base del ensamble biela">
-        <img src="renders/Connecting_Rod_Assembly_(1)_Base.png" alt="Connecting Rod Base"><div class="meta"><span>Connecting Rod · base</span><span class="tag">ASM</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A4-Orientaciones.png" data-cap="A4-Orientaciones · CSWA">
+        <img loading="lazy" src="renders/CSWA_A4-Orientaciones.png" alt="A4-Orientaciones"><div class="meta"><span>A4-Orientaciones</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/CSWA_LlaveAllen.png" data-cap="Llave Allen · perfil hexagonal extruido">
-        <img src="renders/CSWA_LlaveAllen.png" alt="Llave Allen"><div class="meta"><span>Llave Allen</span><span class="tag">CSWA</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A5.-Solido_de_revolución.png" data-cap="A5. Solido de revolución · CSWA">
+        <img loading="lazy" src="renders/CSWA_A5.-Solido_de_revolución.png" alt="A5. Solido de revolución"><div class="meta"><span>A5. Solido de revolución</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" data-cap="Mecanismo de precisión · perfil estructural">
-        <img src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" alt="Perfil de precisión"><div class="meta"><span>Perfil de precisión</span><span class="tag">UANL</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A6-Pieza_y_Marco.png" data-cap="A6-Pieza y Marco · CSWA">
+        <img loading="lazy" src="renders/CSWA_A6-Pieza_y_Marco.png" alt="A6-Pieza y Marco"><div class="meta"><span>A6-Pieza y Marco</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/PIEZAS_TOBOGAN.png" data-cap="Tobogán · pieza para impresión 3D (también disponible en STL)">
-        <img src="renders/PIEZAS_TOBOGAN.png" alt="Tobogán"><div class="meta"><span>Tobogán · 3D print</span><span class="tag">AM</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A7-Ensamblajes_1.png" data-cap="A7-Ensamblajes 1 · CSWA">
+        <img loading="lazy" src="renders/CSWA_A7-Ensamblajes_1.png" alt="A7-Ensamblajes 1"><div class="meta"><span>A7-Ensamblajes 1</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" data-cap="Métodos adaptativos de malla · análisis FEA">
-        <img src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" alt="Análisis FEA"><div class="meta"><span>Análisis FEA</span><span class="tag">SIM</span></div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_ACTIVIDAD_6.png" data-cap="ACTIVIDAD 6 · CSWA">
+        <img loading="lazy" src="renders/CSWA_ACTIVIDAD_6.png" alt="ACTIVIDAD 6"><div class="meta"><span>ACTIVIDAD 6</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_as.png" data-cap="as · CSWA">
+        <img loading="lazy" src="renders/CSWA_as.png" alt="as"><div class="meta"><span>as</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Base.png" data-cap="Base · CSWA">
+        <img loading="lazy" src="renders/CSWA_Base.png" alt="Base"><div class="meta"><span>Base</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Connecting_Rod.png" data-cap="Connecting Rod · CSWA">
+        <img loading="lazy" src="renders/CSWA_Connecting_Rod.png" alt="Connecting Rod"><div class="meta"><span>Connecting Rod</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Connector_Block.png" data-cap="Connector Block · CSWA">
+        <img loading="lazy" src="renders/CSWA_Connector_Block.png" alt="Connector Block"><div class="meta"><span>Connector Block</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_dwq.png" data-cap="dwq · CSWA">
+        <img loading="lazy" src="renders/CSWA_dwq.png" alt="dwq"><div class="meta"><span>dwq</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_EJEMPLO_1.png" data-cap="EJEMPLO 1 · CSWA">
+        <img loading="lazy" src="renders/CSWA_EJEMPLO_1.png" alt="EJEMPLO 1"><div class="meta"><span>EJEMPLO 1</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Ensamblaje4.png" data-cap="Ensamblaje4 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Ensamblaje4.png" alt="Ensamblaje4"><div class="meta"><span>Ensamblaje4</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Ensamblaje6.png" data-cap="Ensamblaje6 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Ensamblaje6.png" alt="Ensamblaje6"><div class="meta"><span>Ensamblaje6</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_ensamblajes3.png" data-cap="ensamblajes3 · CSWA">
+        <img loading="lazy" src="renders/CSWA_ensamblajes3.png" alt="ensamblajes3"><div class="meta"><span>ensamblajes3</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_EXAM.png" data-cap="EXAM · CSWA">
+        <img loading="lazy" src="renders/CSWA_EXAM.png" alt="EXAM"><div class="meta"><span>EXAM</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_l.png" data-cap="l · CSWA">
+        <img loading="lazy" src="renders/CSWA_l.png" alt="l"><div class="meta"><span>l</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_LlaveAllen.png" data-cap="LlaveAllen · CSWA">
+        <img loading="lazy" src="renders/CSWA_LlaveAllen.png" alt="LlaveAllen"><div class="meta"><span>LlaveAllen</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Pieza1.png" data-cap="Pieza1 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Pieza1.png" alt="Pieza1"><div class="meta"><span>Pieza1</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_pieza2.png" data-cap="pieza2 · CSWA">
+        <img loading="lazy" src="renders/CSWA_pieza2.png" alt="pieza2"><div class="meta"><span>pieza2</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Pieza3.png" data-cap="Pieza3 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Pieza3.png" alt="Pieza3"><div class="meta"><span>Pieza3</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Pieza4.png" data-cap="Pieza4 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Pieza4.png" alt="Pieza4"><div class="meta"><span>Pieza4</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Pieza5.png" data-cap="Pieza5 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Pieza5.png" alt="Pieza5"><div class="meta"><span>Pieza5</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_PiezaBonus.png" data-cap="PiezaBonus · CSWA">
+        <img loading="lazy" src="renders/CSWA_PiezaBonus.png" alt="PiezaBonus"><div class="meta"><span>PiezaBonus</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_PiezaPractica1raParte.png" data-cap="PiezaPractica1raParte · CSWA">
+        <img loading="lazy" src="renders/CSWA_PiezaPractica1raParte.png" alt="PiezaPractica1raParte"><div class="meta"><span>PiezaPractica1raParte</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_PiezaPractica2daParte.png" data-cap="PiezaPractica2daParte · CSWA">
+        <img loading="lazy" src="renders/CSWA_PiezaPractica2daParte.png" alt="PiezaPractica2daParte"><div class="meta"><span>PiezaPractica2daParte</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_solido2.png" data-cap="solido2 · CSWA">
+        <img loading="lazy" src="renders/CSWA_solido2.png" alt="solido2"><div class="meta"><span>solido2</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Solido_revolucion_2.png" data-cap="Solido revolucion 2 · CSWA">
+        <img loading="lazy" src="renders/CSWA_Solido_revolucion_2.png" alt="Solido revolucion 2"><div class="meta"><span>Solido revolucion 2</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Wheel_component.png" data-cap="Wheel component · CSWA">
+        <img loading="lazy" src="renders/CSWA_Wheel_component.png" alt="Wheel component"><div class="meta"><span>Wheel component</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_xxx.png" data-cap="xxx · CSWA">
+        <img loading="lazy" src="renders/CSWA_xxx.png" alt="xxx"><div class="meta"><span>xxx</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_zz.png" data-cap="zz · CSWA">
+        <img loading="lazy" src="renders/CSWA_zz.png" alt="zz"><div class="meta"><span>zz</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A1._Configuraciones.png" data-cap="A1. Configuraciones · CSWP">
+        <img loading="lazy" src="renders/Cswp_A1._Configuraciones.png" alt="A1. Configuraciones"><div class="meta"><span>A1. Configuraciones</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_base.png" data-cap="A10 base · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_base.png" alt="A10 base"><div class="meta"><span>A10 base</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_corta.png" data-cap="A10 corta · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_corta.png" alt="A10 corta"><div class="meta"><span>A10 corta</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_estudio_mov.png" data-cap="A10 estudio mov · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_estudio_mov.png" alt="A10 estudio mov"><div class="meta"><span>A10 estudio mov</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_larga.png" data-cap="A10 larga · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_larga.png" alt="A10 larga"><div class="meta"><span>A10 larga</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_manivela.png" data-cap="A10 manivela · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_manivela.png" alt="A10 manivela"><div class="meta"><span>A10 manivela</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_triangle1.png" data-cap="A10 triangle1 · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_triangle1.png" alt="A10 triangle1"><div class="meta"><span>A10 triangle1</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_triangle2.png" data-cap="A10 triangle2 · CSWP">
+        <img loading="lazy" src="renders/Cswp_A10_triangle2.png" alt="A10 triangle2"><div class="meta"><span>A10 triangle2</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_a11.png" data-cap="a11 · CSWP">
+        <img loading="lazy" src="renders/Cswp_a11.png" alt="a11"><div class="meta"><span>a11</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A8.png" data-cap="A8 · CSWP">
+        <img loading="lazy" src="renders/Cswp_A8.png" alt="A8"><div class="meta"><span>A8</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" data-cap="EXAMEN DE EJEMPLO 1.1 · CSWP">
+        <img loading="lazy" src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" alt="EXAMEN DE EJEMPLO 1.1"><div class="meta"><span>EXAMEN DE EJEMPLO 1.1</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_BASE.png" data-cap="BASE · Mec. precisión">
+        <img loading="lazy" src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_BASE.png" alt="BASE"><div class="meta"><span>BASE</span><span class="tag">Mec. precisión</span></div>
+      </div>
+      <div class="gitem" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Maquina_de_dos_ejes,_1_motor.png" data-cap="Maquina de dos ejes, 1 motor · Mec. precisión">
+        <img loading="lazy" src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Maquina_de_dos_ejes,_1_motor.png" alt="Maquina de dos ejes, 1 motor"><div class="meta"><span>Maquina de dos ejes, 1 motor</span><span class="tag">Mec. precisión</span></div>
+      </div>
+      <div class="gitem" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" data-cap="Perfil · Mec. precisión">
+        <img loading="lazy" src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" alt="Perfil"><div class="meta"><span>Perfil</span><span class="tag">Mec. precisión</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Arm1.png" data-cap="Arm1 · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Arm1.png" alt="Arm1"><div class="meta"><span>Arm1</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Arm2.png" data-cap="Arm2 · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Arm2.png" alt="Arm2"><div class="meta"><span>Arm2</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Body.png" data-cap="Body · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Body.png" alt="Body"><div class="meta"><span>Body</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" data-cap="DTH (vista explosionada) · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" alt="DTH"><div class="meta"><span>DTH · explosionado</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Grip.png" data-cap="Grip · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Grip.png" alt="Grip"><div class="meta"><span>Grip</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Large_Pin.png" data-cap="Large Pin · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Large_Pin.png" alt="Large Pin"><div class="meta"><span>Large Pin</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Small_Pin.png" data-cap="Small Pin · Gripper ASM">
+        <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Small_Pin.png" alt="Small Pin"><div class="meta"><span>Small Pin</span><span class="tag">Gripper ASM</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Base.png" data-cap="Base · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Base.png" alt="Base"><div class="meta"><span>Base</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Cilindro.png" data-cap="Cilindro · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Cilindro.png" alt="Cilindro"><div class="meta"><span>Cilindro</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Ensamblaje2.png" data-cap="Ensamblaje2 · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Ensamblaje2.png" alt="Ensamblaje2"><div class="meta"><span>Ensamblaje2</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Eslabon1.png" data-cap="Eslabon1 · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Eslabon1.png" alt="Eslabon1"><div class="meta"><span>Eslabon1</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Eslabon2.png" data-cap="Eslabon2 · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Eslabon2.png" alt="Eslabon2"><div class="meta"><span>Eslabon2</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Soportes.png" data-cap="Soportes · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Brazo_Pia_Soportes.png" alt="Soportes"><div class="meta"><span>Soportes</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Cylinder_Connector.png" data-cap="Cylinder Connector · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Cylinder_Connector.png" alt="Cylinder Connector"><div class="meta"><span>Cylinder Connector</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Ensamblaje1.png" data-cap="Ensamblaje1 · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Ensamblaje1.png" alt="Ensamblaje1"><div class="meta"><span>Ensamblaje1</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Large_Link.png" data-cap="Large Link · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Large_Link.png" alt="Large Link"><div class="meta"><span>Large Link</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Pieza1.png" data-cap="Pieza1 · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Pieza1.png" alt="Pieza1"><div class="meta"><span>Pieza1</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_PIEZA_SOLID.png" data-cap="PIEZA SOLID · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_PIEZA_SOLID.png" alt="PIEZA SOLID"><div class="meta"><span>PIEZA SOLID</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Piston.png" data-cap="Piston · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Piston.png" alt="Piston"><div class="meta"><span>Piston</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Piston_Cylinder.png" data-cap="Piston Cylinder · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Piston_Cylinder.png" alt="Piston Cylinder"><div class="meta"><span>Piston Cylinder</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Rail_Lid.png" data-cap="Rail Lid · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Rail_Lid.png" alt="Rail Lid"><div class="meta"><span>Rail Lid</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Small_Link.png" data-cap="Small Link · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Small_Link.png" alt="Small Link"><div class="meta"><span>Small Link</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Wheel.png" data-cap="Wheel · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_Wheel.png" alt="Wheel"><div class="meta"><span>Wheel</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Wheel_Linkage_Assembly_zz.png" data-cap="zz · Wheel Linkage">
+        <img loading="lazy" src="renders/ENSAMBLES_Wheel_Linkage_Assembly_zz.png" alt="zz"><div class="meta"><span>zz</span><span class="tag">Wheel Linkage</span></div>
+      </div>
+      <div class="gitem" data-tag="am" data-src="renders/PIEZAS_TOBOGAN.png" data-cap="TOBOGAN · 3D Print">
+        <img loading="lazy" src="renders/PIEZAS_TOBOGAN.png" alt="TOBOGAN"><div class="meta"><span>TOBOGAN</span><span class="tag">3D Print</span></div>
+      </div>
+      <div class="gitem" data-tag="sim" data-src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" data-cap="A9. Metodos adaptativos de malla · Simulation">
+        <img loading="lazy" src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" alt="A9. Metodos adaptativos de malla"><div class="meta"><span>A9. Metodos adaptativos de malla</span><span class="tag">Simulation</span></div>
+      </div>
+      <div class="gitem" data-tag="sim" data-src="renders/Simulation_Pieza1.png" data-cap="Pieza1 · Simulation">
+        <img loading="lazy" src="renders/Simulation_Pieza1.png" alt="Pieza1"><div class="meta"><span>Pieza1</span><span class="tag">Simulation</span></div>
+      </div>
+      <div class="gitem" data-tag="sim" data-src="renders/Simulation_Pieza2.png" data-cap="Pieza2 · Simulation">
+        <img loading="lazy" src="renders/Simulation_Pieza2.png" alt="Pieza2"><div class="meta"><span>Pieza2</span><span class="tag">Simulation</span></div>
+      </div>
+      <div class="gitem" data-tag="sim" data-src="renders/Simulation_Pieza3.png" data-cap="Pieza3 · Simulation">
+        <img loading="lazy" src="renders/Simulation_Pieza3.png" alt="Pieza3"><div class="meta"><span>Pieza3</span><span class="tag">Simulation</span></div>
+      </div>
+      <div class="gitem" data-tag="sim" data-src="renders/Simulation_Pieza4.png" data-cap="Pieza4 · Simulation">
+        <img loading="lazy" src="renders/Simulation_Pieza4.png" alt="Pieza4"><div class="meta"><span>Pieza4</span><span class="tag">Simulation</span></div>
+      </div>
+      <div class="gitem" data-tag="sim" data-src="renders/Simulation_Pieza5.png" data-cap="Pieza5 · Simulation">
+        <img loading="lazy" src="renders/Simulation_Pieza5.png" alt="Pieza5"><div class="meta"><span>Pieza5</span><span class="tag">Simulation</span></div>
       </div>
     </div>
   </section>
@@ -543,6 +775,19 @@
   document.getElementById('lb-close').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // gallery filters
+  const filterBtns = document.querySelectorAll('.filter');
+  const galleryItems = document.querySelectorAll('.gallery .gitem');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      filterBtns.forEach(b => b.classList.toggle('on', b === btn));
+      galleryItems.forEach(it => {
+        it.classList.toggle('hide', f !== 'all' && it.dataset.tag !== f);
+      });
+    });
+  });
 </script>
 </body>
 </html>
