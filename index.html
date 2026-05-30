@@ -146,6 +146,55 @@
   }
   .slot .mono{font-size:11px;letter-spacing:.1em}
   .slot svg{opacity:.4}
+  .slot-img{
+    margin-top:20px;border:1px solid var(--line);border-radius:3px;
+    aspect-ratio:16/10;background-color:#f4f5f7;background-size:cover;background-position:center;
+    cursor:pointer;transition:transform .3s,border-color .3s;
+    background-repeat:no-repeat;
+  }
+  .slot-img:hover{transform:translateY(-2px);border-color:var(--accent)}
+
+  /* ---- CAD GALLERY ---- */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:880px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.gallery{grid-template-columns:1fr}}
+  .gitem{
+    position:relative;border:1px solid var(--line);background:#f4f5f7;
+    aspect-ratio:4/3;overflow:hidden;cursor:pointer;
+    transition:border-color .25s,transform .25s;
+  }
+  .gitem img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .4s}
+  .gitem:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .gitem:hover img{transform:scale(1.04)}
+  .gitem .meta{
+    position:absolute;left:0;right:0;bottom:0;padding:10px 12px;
+    background:linear-gradient(transparent,rgba(10,14,20,.92));
+    color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:11px;
+    display:flex;justify-content:space-between;gap:8px;letter-spacing:.04em;
+    opacity:0;transition:opacity .25s;pointer-events:none;
+  }
+  .gitem:hover .meta{opacity:1}
+  .gitem .meta .tag{color:var(--accent)}
+
+  /* ---- LIGHTBOX ---- */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;display:none;
+    background:rgba(5,8,12,.95);backdrop-filter:blur(8px);
+    align-items:center;justify-content:center;padding:40px;
+  }
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .lightbox .lb-caption{
+    position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+    font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink);
+    background:rgba(10,14,20,.85);padding:8px 16px;border:1px solid var(--line);
+  }
+  .lightbox .lb-close{
+    position:absolute;top:24px;right:28px;font-family:"JetBrains Mono",monospace;
+    color:var(--ink);background:none;border:1px solid var(--line);padding:6px 12px;
+    cursor:pointer;font-size:12px;letter-spacing:.1em;transition:border-color .2s,color .2s;
+  }
+  .lightbox .lb-close:hover{border-color:var(--accent);color:var(--accent)}
 
   /* ---- EXPERIENCE ---- */
   .exp-item{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:28px 0;border-bottom:1px solid var(--line)}
@@ -201,6 +250,7 @@
   <div class="links">
     <a href="#about">/ perfil</a>
     <a href="#work">/ trabajo</a>
+    <a href="#cad-gallery">/ cad</a>
     <a href="#experience">/ experiencia</a>
     <a href="#skills">/ skills</a>
     <a href="#contact">/ contacto</a>
@@ -265,14 +315,10 @@
       <div class="module">
         <span class="m-num">[ M01 ]</span>
         <h3>Diseño de piezas / CAD</h3>
-        <p>Modelado 3D, diseño mecánico y manufactura. Certificado profesional en SolidWorks.</p>
+        <p>Modelado 3D, ensambles y simulación. 6 certificaciones SolidWorks oficiales.</p>
         <div class="tools"><span>SolidWorks</span><span>Fusion 360</span><span>AutoCAD</span></div>
-        <!-- 👉 REEMPLAZA: pon un render o foto de una pieza. Cambia el div .slot por:
-             <img src="ruta/a/tu-pieza.png" style="width:100%;margin-top:20px;border-radius:3px"> -->
-        <div class="slot">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          <span class="mono">[ render de pieza CAD ]</span>
-        </div>
+        <a href="#cad-gallery" class="slot-img" style="background-image:url('renders/ENSAMBLES_Gripper_Assembly_DTH.png')" aria-label="Ver galería CAD completa"></a>
+        <p style="margin-top:10px;font-size:12px;color:var(--accent);font-family:'JetBrains Mono',monospace">→ ver galería completa</p>
       </div>
 
       <!-- MÓDULO: PROGRAMACIÓN -->
@@ -315,6 +361,53 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ===== GALERÍA CAD ===== -->
+  <section id="cad-gallery" class="reveal">
+    <div class="sec-head">
+      <span class="num">02·b</span>
+      <span class="label">Galería · SolidWorks</span>
+    </div>
+    <p style="color:var(--ink-dim);max-width:55ch;margin-bottom:32px">Piezas y ensambles modelados durante las certificaciones CSWA, CSWP, Simulation, Sustainability, Additive y Electrical. Haz clic en cualquiera para verla en grande.</p>
+    <div class="gallery">
+      <div class="gitem" data-src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" data-cap="Gripper Assembly · vista explosionada">
+        <img src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" alt="Gripper Assembly"><div class="meta"><span>Gripper · explosionado</span><span class="tag">ASM</span></div>
+      </div>
+      <div class="gitem" data-src="renders/CSWA_A11.-Ensamblajes_2.png" data-cap="Mecanismo tipo tijera · ensamble multi-pieza">
+        <img src="renders/CSWA_A11.-Ensamblajes_2.png" alt="Mecanismo tijera"><div class="meta"><span>Mecanismo tijera</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-src="renders/Cswp_A10_estudio_mov.png" data-cap="Estudio de movimiento · ensamble con manivela">
+        <img src="renders/Cswp_A10_estudio_mov.png" alt="Estudio de movimiento"><div class="meta"><span>Estudio de movimiento</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-src="renders/CSWA_EXAM.png" data-cap="Pieza del examen CSWA · modelado complejo">
+        <img src="renders/CSWA_EXAM.png" alt="Pieza examen CSWA"><div class="meta"><span>Pieza examen</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-src="renders/CSWA_PiezaBonus.png" data-cap="Pieza bonus · acabados torneados">
+        <img src="renders/CSWA_PiezaBonus.png" alt="Pieza bonus"><div class="meta"><span>Pieza bonus</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" data-cap="Examen de ejemplo CSWP · pieza avanzada">
+        <img src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" alt="Examen CSWP"><div class="meta"><span>Examen CSWP</span><span class="tag">CSWP</span></div>
+      </div>
+      <div class="gitem" data-src="renders/CSWA_A5.-Solido_de_revolución.png" data-cap="Sólido de revolución · operación de revolve">
+        <img src="renders/CSWA_A5.-Solido_de_revolución.png" alt="Sólido de revolución"><div class="meta"><span>Sólido de revolución</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-src="renders/Connecting_Rod_Assembly_(1)_Base.png" data-cap="Connecting Rod Assembly · base del ensamble biela">
+        <img src="renders/Connecting_Rod_Assembly_(1)_Base.png" alt="Connecting Rod Base"><div class="meta"><span>Connecting Rod · base</span><span class="tag">ASM</span></div>
+      </div>
+      <div class="gitem" data-src="renders/CSWA_LlaveAllen.png" data-cap="Llave Allen · perfil hexagonal extruido">
+        <img src="renders/CSWA_LlaveAllen.png" alt="Llave Allen"><div class="meta"><span>Llave Allen</span><span class="tag">CSWA</span></div>
+      </div>
+      <div class="gitem" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" data-cap="Mecanismo de precisión · perfil estructural">
+        <img src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" alt="Perfil de precisión"><div class="meta"><span>Perfil de precisión</span><span class="tag">UANL</span></div>
+      </div>
+      <div class="gitem" data-src="renders/PIEZAS_TOBOGAN.png" data-cap="Tobogán · pieza para impresión 3D (también disponible en STL)">
+        <img src="renders/PIEZAS_TOBOGAN.png" alt="Tobogán"><div class="meta"><span>Tobogán · 3D print</span><span class="tag">AM</span></div>
+      </div>
+      <div class="gitem" data-src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" data-cap="Métodos adaptativos de malla · análisis FEA">
+        <img src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" alt="Análisis FEA"><div class="meta"><span>Análisis FEA</span><span class="tag">SIM</span></div>
+      </div>
     </div>
   </section>
 
@@ -397,6 +490,13 @@
 
 <footer>ERICK REYNA ESPINOZA · PORTAFOLIO · MONTERREY MX · 2026</footer>
 
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
+  <button class="lb-close" id="lb-close">[ ESC ] cerrar</button>
+  <img id="lb-img" alt="">
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
 <script>
   // reveal on scroll
   const io = new IntersectionObserver((entries)=>{
@@ -412,6 +512,27 @@
     const y = (e.clientY/window.innerHeight*100).toFixed(2);
     coord.textContent = `X:${x} / Y:${y}`;
   });
+
+  // lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-caption');
+  const openLb = (src, cap) => {
+    lbImg.src = src; lbCap.textContent = cap || '';
+    lb.classList.add('on'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeLb = () => {
+    lb.classList.remove('on'); lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  };
+  document.querySelectorAll('.gitem').forEach(el => {
+    el.addEventListener('click', () => openLb(el.dataset.src, el.dataset.cap));
+  });
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 </script>
 </body>
 </html>

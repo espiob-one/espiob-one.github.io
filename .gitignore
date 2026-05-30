@@ -1,6 +1,15 @@
+# System
 .DS_Store
 Thumbs.db
 desktop.ini
 *.tmp
 .vscode/
 .idea/
+
+# Python scripts used to extract the SolidWorks thumbnails — not part of the site
+*.py
+__pycache__/
+
+# Original SolidWorks source files (~150MB binary CAD files, can't render on web).
+# We keep the extracted PNGs in renders/ instead.
+Certificacion Solidworks/
