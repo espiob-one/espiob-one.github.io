@@ -188,7 +188,10 @@
     position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
     font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink);
     background:rgba(10,14,20,.85);padding:8px 16px;border:1px solid var(--line);
+    display:flex;gap:14px;align-items:center;max-width:90vw;
   }
+  .lightbox .lb-caption a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px}
+  .lightbox .lb-caption a:hover{opacity:.7}
   .lightbox .lb-close{
     position:absolute;top:24px;right:28px;font-family:"JetBrains Mono",monospace;
     color:var(--ink);background:none;border:1px solid var(--line);padding:6px 12px;
@@ -464,14 +467,14 @@
       <div class="skill-cell"><div class="cat">Control de versiones</div><div class="items">Git · GitHub</div></div>
     </div>
     <div class="cert-row">
-      <a class="cert" href="Certificate C-E2G4WDL536.pdf" target="_blank" title="SOLIDWORKS Design Associate · 9 abr 2025">CSWA <span class="cert-date">04·25</span></a>
-      <a class="cert" href="Certificate C-D3Q7RCP9UL.pdf" target="_blank" title="SOLIDWORKS Design Professional · 22 jun 2025">CSWP <span class="cert-date">06·25</span></a>
-      <a class="cert" href="Certificate C-CYFMAKL7P4.pdf" target="_blank" title="SOLIDWORKS Sustainability Associate · 17 feb 2025">CSWA-Sustainability <span class="cert-date">02·25</span></a>
-      <a class="cert" href="Certificate C-G7ZADJNU58.pdf" target="_blank" title="SOLIDWORKS Simulation Associate · 13 mar 2025">CSWA-Simulation <span class="cert-date">03·25</span></a>
-      <a class="cert" href="Certificate C-XWNCQDRA58.pdf" target="_blank" title="SOLIDWORKS Additive Manufacturing Associate · 3 mar 2025">CSWA-AM <span class="cert-date">03·25</span></a>
-      <a class="cert" href="Certificate C-PANG3FJS9L.pdf" target="_blank" title="SOLIDWORKS Electrical Design Associate · 22 jun 2025">CSWA-Electrical <span class="cert-date">06·25</span></a>
+      <a class="cert" href="Certificate C-E2G4WDL536.pdf" data-src="renders/certs/Certificate C-E2G4WDL536.png" data-pdf="Certificate C-E2G4WDL536.pdf" data-cap="SOLIDWORKS Design Associate (CSWA) · 9 abr 2025" title="SOLIDWORKS Design Associate · 9 abr 2025">CSWA <span class="cert-date">04·25</span></a>
+      <a class="cert" href="Certificate C-D3Q7RCP9UL.pdf" data-src="renders/certs/Certificate C-D3Q7RCP9UL.png" data-pdf="Certificate C-D3Q7RCP9UL.pdf" data-cap="SOLIDWORKS Design Professional (CSWP) · 22 jun 2025" title="SOLIDWORKS Design Professional · 22 jun 2025">CSWP <span class="cert-date">06·25</span></a>
+      <a class="cert" href="Certificate C-CYFMAKL7P4.pdf" data-src="renders/certs/Certificate C-CYFMAKL7P4.png" data-pdf="Certificate C-CYFMAKL7P4.pdf" data-cap="SOLIDWORKS Sustainability Associate · 17 feb 2025" title="SOLIDWORKS Sustainability Associate · 17 feb 2025">CSWA-Sustainability <span class="cert-date">02·25</span></a>
+      <a class="cert" href="Certificate C-G7ZADJNU58.pdf" data-src="renders/certs/Certificate C-G7ZADJNU58.png" data-pdf="Certificate C-G7ZADJNU58.pdf" data-cap="SOLIDWORKS Simulation Associate · 13 mar 2025" title="SOLIDWORKS Simulation Associate · 13 mar 2025">CSWA-Simulation <span class="cert-date">03·25</span></a>
+      <a class="cert" href="Certificate C-XWNCQDRA58.pdf" data-src="renders/certs/Certificate C-XWNCQDRA58.png" data-pdf="Certificate C-XWNCQDRA58.pdf" data-cap="SOLIDWORKS Additive Manufacturing Associate · 3 mar 2025" title="SOLIDWORKS Additive Manufacturing Associate · 3 mar 2025">CSWA-AM <span class="cert-date">03·25</span></a>
+      <a class="cert" href="Certificate C-PANG3FJS9L.pdf" data-src="renders/certs/Certificate C-PANG3FJS9L.png" data-pdf="Certificate C-PANG3FJS9L.pdf" data-cap="SOLIDWORKS Electrical Design Associate · 22 jun 2025" title="SOLIDWORKS Electrical Design Associate · 22 jun 2025">CSWA-Electrical <span class="cert-date">06·25</span></a>
     </div>
-    <p style="color:var(--ink-dim);font-size:13px;margin-top:14px;font-family:'JetBrains Mono',monospace">// Certificaciones SolidWorks (haz clic para ver el PDF) · Idiomas: Español (nativo) · Inglés (B1–B2)</p>
+    <p style="color:var(--ink-dim);font-size:13px;margin-top:14px;font-family:'JetBrains Mono',monospace">// Certificaciones SolidWorks (haz clic para verlas) · Idiomas: Español (nativo) · Inglés (B1–B2)</p>
   </section>
 
   <!-- ===== CONTACTO ===== -->
@@ -517,8 +520,9 @@
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lb-img');
   const lbCap = document.getElementById('lb-caption');
-  const openLb = (src, cap) => {
-    lbImg.src = src; lbCap.textContent = cap || '';
+  const openLb = (src, cap, pdf) => {
+    lbImg.src = src;
+    lbCap.innerHTML = (cap || '') + (pdf ? ` <a href="${pdf}" target="_blank" download>↓ PDF original</a>` : '');
     lb.classList.add('on'); lb.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
   };
@@ -529,6 +533,12 @@
   };
   document.querySelectorAll('.gitem').forEach(el => {
     el.addEventListener('click', () => openLb(el.dataset.src, el.dataset.cap));
+  });
+  document.querySelectorAll('.cert[data-src]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      openLb(el.dataset.src, el.dataset.cap, el.dataset.pdf);
+    });
   });
   document.getElementById('lb-close').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
