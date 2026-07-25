@@ -147,7 +147,7 @@
   .slot .mono{font-size:11px;letter-spacing:.1em}
   .slot svg{opacity:.4}
   .slot-img{
-    margin-top:20px;border:1px solid var(--line);border-radius:3px;
+    display:block;margin-top:20px;border:1px solid var(--line);border-radius:3px;
     aspect-ratio:16/10;background-color:#f4f5f7;background-size:cover;background-position:center;
     cursor:pointer;transition:transform .3s,border-color .3s;
     background-repeat:no-repeat;
@@ -171,6 +171,15 @@
   @media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:420px){.gallery{grid-template-columns:1fr}}
   .gitem.hide{display:none}
+  .gallery.collapsed .gitem:not(.feat){display:none}
+  .show-more{
+    display:block;margin:28px auto 0;
+    font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.08em;
+    padding:12px 28px;background:transparent;color:var(--accent);
+    border:1px solid var(--accent);cursor:pointer;
+    transition:background .25s,color .25s;
+  }
+  .show-more:hover{background:var(--accent);color:#0a0e14}
   .gitem{
     position:relative;border:1px solid var(--line);background:#f4f5f7;
     aspect-ratio:4/3;overflow:hidden;cursor:pointer;
@@ -323,7 +332,7 @@
       <span class="num">02</span>
       <span class="label">Trabajo · Las disciplinas</span>
     </div>
-    <p style="color:var(--ink-dim);max-width:50ch;margin-bottom:40px">Cada módulo es un área de mi trabajo. Aquí irán mis piezas reales — reemplaza los espacios marcados con tus imágenes, enlaces o videos.</p>
+    <p style="color:var(--ink-dim);max-width:50ch;margin-bottom:40px">Cada módulo es un área de mi trabajo: diseño mecánico, código, datos y música.</p>
 
     <div class="modules">
 
@@ -343,11 +352,10 @@
         <h3>Programación</h3>
         <p>Automatización, scripting y proyectos de software. De control a herramientas internas.</p>
         <div class="tools"><span>Python</span><span>C++</span><span>JavaScript</span><span>MATLAB</span></div>
-        <!-- 👉 REEMPLAZA: enlaza un repo o captura de un proyecto. -->
-        <div class="slot">
+        <a class="slot" href="https://github.com/espiob-one" target="_blank" style="text-decoration:none;color:var(--ink-dim);cursor:pointer">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
-          <span class="mono">[ proyecto / repo de GitHub ]</span>
-        </div>
+          <span class="mono">↗ github.com/espiob-one</span>
+        </a>
       </div>
 
       <!-- MÓDULO: DATOS & BI -->
@@ -356,10 +364,9 @@
         <h3>Datos & Business Intelligence</h3>
         <p>Dashboards, automatización de reportes y visualización para la toma de decisiones.</p>
         <div class="tools"><span>Power BI</span><span>MS Fabric</span><span>Power Automate</span><span>n8n</span></div>
-        <!-- 👉 REEMPLAZA: captura de un dashboard de Power BI. -->
         <div class="slot">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>
-          <span class="mono">[ dashboard / visualización ]</span>
+          <span class="mono">[ dashboards — próximamente ]</span>
         </div>
       </div>
 
@@ -369,11 +376,9 @@
         <h3>Música</h3>
         <p>Mi lado creativo. Producción, instrumentos o composiciones.</p>
         <div class="tools"><span>Producción</span><span>Composición</span></div>
-        <!-- 👉 REEMPLAZA: puedes embeber un reproductor de Spotify/SoundCloud/YouTube aquí.
-             Ej: <iframe src="enlace-embed" style="width:100%;height:160px;border:0;margin-top:20px"></iframe> -->
         <div class="slot">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-          <span class="mono">[ reproductor / track ]</span>
+          <span class="mono">[ música — próximamente ]</span>
         </div>
       </div>
 
@@ -397,8 +402,8 @@
       <button class="filter" data-filter="am">3D Print <span class="cnt">1</span></button>
       <button class="filter" data-filter="fusion">Fusion 360 <span class="cnt">7</span></button>
     </div>
-    <div class="gallery">
-      <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Base.png" data-cap="Base · Connecting Rod">
+    <div class="gallery collapsed">
+      <div class="gitem feat" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Base.png" data-cap="Base · Connecting Rod">
         <img loading="lazy" src="renders/Connecting_Rod_Assembly_(1)_Base.png" alt="Base"><div class="meta"><span>Base</span><span class="tag">Connecting Rod</span></div>
       </div>
       <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Connecting_Rod.png" data-cap="Connecting Rod · Connecting Rod">
@@ -410,7 +415,7 @@
       <div class="gitem" data-tag="asm" data-src="renders/Connecting_Rod_Assembly_(1)_Wheel_component.png" data-cap="Wheel component · Connecting Rod">
         <img loading="lazy" src="renders/Connecting_Rod_Assembly_(1)_Wheel_component.png" alt="Wheel component"><div class="meta"><span>Wheel component</span><span class="tag">Connecting Rod</span></div>
       </div>
-      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A11.-Ensamblajes_2.png" data-cap="A11. Ensamblajes 2 · CSWA">
+      <div class="gitem feat" data-tag="cswa" data-src="renders/CSWA_A11.-Ensamblajes_2.png" data-cap="A11. Ensamblajes 2 · CSWA">
         <img loading="lazy" src="renders/CSWA_A11.-Ensamblajes_2.png" alt="A11. Ensamblajes 2"><div class="meta"><span>A11. Ensamblajes 2</span><span class="tag">CSWA</span></div>
       </div>
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A13._Manejo_de_planos.png" data-cap="A13. Manejo de planos · CSWA">
@@ -422,7 +427,7 @@
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A4-Orientaciones.png" data-cap="A4-Orientaciones · CSWA">
         <img loading="lazy" src="renders/CSWA_A4-Orientaciones.png" alt="A4-Orientaciones"><div class="meta"><span>A4-Orientaciones</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A5.-Solido_de_revolución.png" data-cap="A5. Solido de revolución · CSWA">
+      <div class="gitem feat" data-tag="cswa" data-src="renders/CSWA_A5.-Solido_de_revolución.png" data-cap="A5. Solido de revolución · CSWA">
         <img loading="lazy" src="renders/CSWA_A5.-Solido_de_revolución.png" alt="A5. Solido de revolución"><div class="meta"><span>A5. Solido de revolución</span><span class="tag">CSWA</span></div>
       </div>
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_A6-Pieza_y_Marco.png" data-cap="A6-Pieza y Marco · CSWA">
@@ -461,13 +466,13 @@
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_ensamblajes3.png" data-cap="ensamblajes3 · CSWA">
         <img loading="lazy" src="renders/CSWA_ensamblajes3.png" alt="ensamblajes3"><div class="meta"><span>ensamblajes3</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_EXAM.png" data-cap="EXAM · CSWA">
+      <div class="gitem feat" data-tag="cswa" data-src="renders/CSWA_EXAM.png" data-cap="EXAM · CSWA">
         <img loading="lazy" src="renders/CSWA_EXAM.png" alt="EXAM"><div class="meta"><span>EXAM</span><span class="tag">CSWA</span></div>
       </div>
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_l.png" data-cap="l · CSWA">
         <img loading="lazy" src="renders/CSWA_l.png" alt="l"><div class="meta"><span>l</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_LlaveAllen.png" data-cap="LlaveAllen · CSWA">
+      <div class="gitem feat" data-tag="cswa" data-src="renders/CSWA_LlaveAllen.png" data-cap="LlaveAllen · CSWA">
         <img loading="lazy" src="renders/CSWA_LlaveAllen.png" alt="LlaveAllen"><div class="meta"><span>LlaveAllen</span><span class="tag">CSWA</span></div>
       </div>
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Pieza1.png" data-cap="Pieza1 · CSWA">
@@ -485,7 +490,7 @@
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_Pieza5.png" data-cap="Pieza5 · CSWA">
         <img loading="lazy" src="renders/CSWA_Pieza5.png" alt="Pieza5"><div class="meta"><span>Pieza5</span><span class="tag">CSWA</span></div>
       </div>
-      <div class="gitem" data-tag="cswa" data-src="renders/CSWA_PiezaBonus.png" data-cap="PiezaBonus · CSWA">
+      <div class="gitem feat" data-tag="cswa" data-src="renders/CSWA_PiezaBonus.png" data-cap="PiezaBonus · CSWA">
         <img loading="lazy" src="renders/CSWA_PiezaBonus.png" alt="PiezaBonus"><div class="meta"><span>PiezaBonus</span><span class="tag">CSWA</span></div>
       </div>
       <div class="gitem" data-tag="cswa" data-src="renders/CSWA_PiezaPractica1raParte.png" data-cap="PiezaPractica1raParte · CSWA">
@@ -518,7 +523,7 @@
       <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_corta.png" data-cap="A10 corta · CSWP">
         <img loading="lazy" src="renders/Cswp_A10_corta.png" alt="A10 corta"><div class="meta"><span>A10 corta</span><span class="tag">CSWP</span></div>
       </div>
-      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_estudio_mov.png" data-cap="A10 estudio mov · CSWP">
+      <div class="gitem feat" data-tag="cswp" data-src="renders/Cswp_A10_estudio_mov.png" data-cap="A10 estudio mov · CSWP">
         <img loading="lazy" src="renders/Cswp_A10_estudio_mov.png" alt="A10 estudio mov"><div class="meta"><span>A10 estudio mov</span><span class="tag">CSWP</span></div>
       </div>
       <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A10_larga.png" data-cap="A10 larga · CSWP">
@@ -539,7 +544,7 @@
       <div class="gitem" data-tag="cswp" data-src="renders/Cswp_A8.png" data-cap="A8 · CSWP">
         <img loading="lazy" src="renders/Cswp_A8.png" alt="A8"><div class="meta"><span>A8</span><span class="tag">CSWP</span></div>
       </div>
-      <div class="gitem" data-tag="cswp" data-src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" data-cap="EXAMEN DE EJEMPLO 1.1 · CSWP">
+      <div class="gitem feat" data-tag="cswp" data-src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" data-cap="EXAMEN DE EJEMPLO 1.1 · CSWP">
         <img loading="lazy" src="renders/Cswp_EXAMEN_DE_EJEMPLO_1.1.png" alt="EXAMEN DE EJEMPLO 1.1"><div class="meta"><span>EXAMEN DE EJEMPLO 1.1</span><span class="tag">CSWP</span></div>
       </div>
       <div class="gitem" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_BASE.png" data-cap="BASE · Mec. precisión">
@@ -548,7 +553,7 @@
       <div class="gitem" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Maquina_de_dos_ejes,_1_motor.png" data-cap="Maquina de dos ejes, 1 motor · Mec. precisión">
         <img loading="lazy" src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Maquina_de_dos_ejes,_1_motor.png" alt="Maquina de dos ejes, 1 motor"><div class="meta"><span>Maquina de dos ejes, 1 motor</span><span class="tag">Mec. precisión</span></div>
       </div>
-      <div class="gitem" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" data-cap="Perfil · Mec. precisión">
+      <div class="gitem feat" data-tag="mech" data-src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" data-cap="Perfil · Mec. precisión">
         <img loading="lazy" src="renders/DISEÑO_DE_MECANISMOS_DE_PRECISION_Perfil.png" alt="Perfil"><div class="meta"><span>Perfil</span><span class="tag">Mec. precisión</span></div>
       </div>
       <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Arm1.png" data-cap="Arm1 · Gripper ASM">
@@ -560,7 +565,7 @@
       <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Body.png" data-cap="Body · Gripper ASM">
         <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_Body.png" alt="Body"><div class="meta"><span>Body</span><span class="tag">Gripper ASM</span></div>
       </div>
-      <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" data-cap="DTH (vista explosionada) · Gripper ASM">
+      <div class="gitem feat" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" data-cap="DTH (vista explosionada) · Gripper ASM">
         <img loading="lazy" src="renders/ENSAMBLES_Gripper_Assembly_DTH.png" alt="DTH"><div class="meta"><span>DTH · explosionado</span><span class="tag">Gripper ASM</span></div>
       </div>
       <div class="gitem" data-tag="asm" data-src="renders/ENSAMBLES_Gripper_Assembly_Grip.png" data-cap="Grip · Gripper ASM">
@@ -626,7 +631,7 @@
       <div class="gitem" data-tag="am" data-src="renders/PIEZAS_TOBOGAN.png" data-cap="TOBOGAN · 3D Print">
         <img loading="lazy" src="renders/PIEZAS_TOBOGAN.png" alt="TOBOGAN"><div class="meta"><span>TOBOGAN</span><span class="tag">3D Print</span></div>
       </div>
-      <div class="gitem" data-tag="sim" data-src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" data-cap="A9. Metodos adaptativos de malla · Simulation">
+      <div class="gitem feat" data-tag="sim" data-src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" data-cap="A9. Metodos adaptativos de malla · Simulation">
         <img loading="lazy" src="renders/Simulation_A9._Metodos_adaptativos_de_malla.png" alt="A9. Metodos adaptativos de malla"><div class="meta"><span>A9. Metodos adaptativos de malla</span><span class="tag">Simulation</span></div>
       </div>
       <div class="gitem" data-tag="sim" data-src="renders/Simulation_Pieza1.png" data-cap="Pieza1 · Simulation">
@@ -653,7 +658,7 @@
       <div class="gitem" data-tag="fusion" data-src="renders/fusion/Engrane_de_decada.png" data-cap="Engrane de década · Fusion 360">
         <img loading="lazy" src="renders/fusion/Engrane_de_decada.png" alt="Engrane de década"><div class="meta"><span>Engrane de década</span><span class="tag">Fusion 360</span></div>
       </div>
-      <div class="gitem" data-tag="fusion" data-src="renders/fusion/Rueda_de_contador.png" data-cap="Rueda de contador · Fusion 360">
+      <div class="gitem feat" data-tag="fusion" data-src="renders/fusion/Rueda_de_contador.png" data-cap="Rueda de contador · Fusion 360">
         <img loading="lazy" src="renders/fusion/Rueda_de_contador.png" alt="Rueda de contador"><div class="meta"><span>Rueda de contador</span><span class="tag">Fusion 360</span></div>
       </div>
       <div class="gitem" data-tag="fusion" data-src="renders/fusion/Rueda_de_entrada.png" data-cap="Rueda de entrada · Fusion 360">
@@ -666,6 +671,7 @@
         <img loading="lazy" src="renders/fusion/EXAMEN.png" alt="EXAMEN"><div class="meta"><span>EXAMEN</span><span class="tag">Fusion 360</span></div>
       </div>
     </div>
+    <button class="show-more" id="gallery-toggle">↓ Ver las 89 piezas</button>
   </section>
 
   <!-- ===== EXPERIENCIA ===== -->
@@ -738,8 +744,8 @@
     <a href="mailto:erick.reynaesp@uanl.edu.mx" class="email">erick.reynaesp@uanl.edu.mx</a>
     <div class="contact-links">
       <a href="https://linkedin.com/in/erick-reyna-839162207" target="_blank">↗ LinkedIn</a>
+      <a href="https://github.com/espiob-one" target="_blank">↗ GitHub</a>
       <a href="tel:+528116956422">↗ +52 81 1695 6422</a>
-      <!-- 👉 Agrega aquí tu GitHub, SoundCloud, etc. -->
     </div>
   </section>
 
@@ -798,9 +804,15 @@
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-  // gallery filters
+  // gallery filters + collapse
   const filterBtns = document.querySelectorAll('.filter');
+  const galleryEl = document.querySelector('.gallery');
   const galleryItems = document.querySelectorAll('.gallery .gitem');
+  const galleryToggle = document.getElementById('gallery-toggle');
+  const updateToggleText = () => {
+    galleryToggle.textContent = galleryEl.classList.contains('collapsed')
+      ? '↓ Ver las 89 piezas' : '↑ Mostrar menos';
+  };
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const f = btn.dataset.filter;
@@ -808,7 +820,23 @@
       galleryItems.forEach(it => {
         it.classList.toggle('hide', f !== 'all' && it.dataset.tag !== f);
       });
+      if (f === 'all') {
+        galleryEl.classList.add('collapsed');
+        galleryToggle.style.display = '';
+        updateToggleText();
+      } else {
+        // a specific category is small enough — show all its pieces
+        galleryEl.classList.remove('collapsed');
+        galleryToggle.style.display = 'none';
+      }
     });
+  });
+  galleryToggle.addEventListener('click', () => {
+    galleryEl.classList.toggle('collapsed');
+    updateToggleText();
+    if (galleryEl.classList.contains('collapsed')) {
+      document.getElementById('cad-gallery').scrollIntoView({behavior:'smooth'});
+    }
   });
 </script>
 </body>
