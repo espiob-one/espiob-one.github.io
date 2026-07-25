@@ -277,6 +277,7 @@
     <a href="#work">/ trabajo</a>
     <a href="#cad-gallery">/ cad</a>
     <a href="#experience">/ experiencia</a>
+    <a href="#projects">/ proyectos</a>
     <a href="#skills">/ skills</a>
     <a href="#contact">/ contacto</a>
   </div>
@@ -314,6 +315,7 @@
       </div>
       <div>
         <p>Estudiante de Ingeniería Mecatrónica en FIME-UANL con experiencia de prácticas en logística, soporte operativo, análisis de datos y automatización de flujos en un entorno de manufactura.</p>
+        <p style="margin-top:16px">Integro agentes de IA (Claude Code, MCP) con herramientas de ingeniería y datos para automatizar procesos de punta a punta: extracción de datos de documentos con IA, pipelines en la nube y modelos semánticos para BI.</p>
         <p style="margin-top:16px">Me interesa cómo la ingeniería, los datos y el diseño se cruzan para resolver problemas reales — y traslado esa misma curiosidad a la música y a los proyectos personales.</p>
         <div class="about-strengths">
           <span class="chip">Pensamiento analítico</span>
@@ -689,11 +691,12 @@
       </div>
       <div class="exp-body">
         <ul>
-          <li>Apoyo a procesos logísticos y operativos mediante seguimiento de datos, reportes y monitoreo de inventario.</li>
-          <li>Uso de SAP y Oracle para revisar, organizar y monitorear datos operativos del día a día.</li>
-          <li>Automatización de reportes y flujos repetitivos con Power Automate y n8n para mejorar la eficiencia.</li>
-          <li>Desarrollo de dashboards y visualizaciones en Power BI y Microsoft Fabric para la toma de decisiones.</li>
-          <li>Documentación de flujos y colaboración con equipos multidisciplinarios para estandarizar procesos.</li>
+          <li>Sistema de procesamiento automático de facturas 3PL en producción: OCR con Azure Document Intelligence, migrado a pipeline de punta a punta en Microsoft Fabric (SharePoint → Lakehouse → PySpark → tablas Delta), con clasificación automática de costos y validación contra 70+ facturas históricas.</li>
+          <li>Extensión del sistema a comprobantes fiscales mexicanos (CFDI 3.3/4.0): parseo directo del XML en PySpark —sin OCR ni costos de API—, deduplicación por UUID fiscal y clasificaciones manuales que sobreviven reconstrucciones de datos.</li>
+          <li>Motor de alocación de inventario en Python/PySpark que cruza inventario y órdenes de compra abiertas contra el backlog de ventas de SAP; publicado en Fabric como modelo semántico Direct Lake con medidas DAX para Power BI.</li>
+          <li>Migración de limpiezas en Excel y Power Query a notebooks programados de PySpark con tablas Delta, incluyendo creación automatizada de modelos semánticos vía semantic-link-labs (API TOM de Power BI).</li>
+          <li>Ingesta diaria automatizada de 7 tipos de reportes de facturación desde APIs REST hacia el Lakehouse, y flujos alternos en n8n con envío de resultados por correo (Microsoft Graph).</li>
+          <li>Dashboards en Power BI y Microsoft Fabric para la toma de decisiones, uso diario de SAP y Oracle, y documentación de flujos (instructivos y guías) para equipos multidisciplinarios.</li>
         </ul>
       </div>
     </div>
@@ -712,19 +715,59 @@
     </div>
   </section>
 
+  <!-- ===== PROYECTOS ===== -->
+  <section id="projects" class="reveal">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <span class="label">Proyectos</span>
+    </div>
+    <div class="modules">
+      <div class="module">
+        <span class="m-num">[ P01 ]</span>
+        <h3>Orquestador de flujos n8n con IA</h3>
+        <p>Genera y despliega flujos de n8n a partir de prompts en lenguaje natural, con reportes automatizados hacia Power BI.</p>
+        <div class="tools"><span>n8n</span><span>PostgreSQL</span><span>Docker</span><span>Claude</span><span>Power BI</span></div>
+      </div>
+      <div class="module">
+        <span class="m-num">[ P02 ]</span>
+        <h3>Robot cuadrúpedo tipo araña</h3>
+        <p>Diseño mecatrónico ligero en desarrollo: cálculos cinemáticos en Python conectados a la API de Fusion 360 para generar geometría paramétrica; BOM con servomotores digitales y Raspberry Pi 5.</p>
+        <div class="tools"><span>Python</span><span>Fusion 360 API</span><span>Raspberry Pi 5</span></div>
+      </div>
+      <div class="module">
+        <span class="m-num">[ P03 ]</span>
+        <h3>Integraciones MCP</h3>
+        <p>Agentes de IA conectados a herramientas de escritorio y servicios vía Model Context Protocol: Fusion 360 (automatización CAD), Obsidian (base de conocimiento) y n8n.</p>
+        <div class="tools"><span>MCP</span><span>Claude Code</span><span>Fusion 360</span><span>Obsidian</span></div>
+      </div>
+      <div class="module">
+        <span class="m-num">[ P04 ]</span>
+        <h3>Detector de acordes de guitarra</h3>
+        <p>Aplicación en Python que identifica progresiones de acordes desde audio mediante análisis espectral con voto de mayoría entre ventanas.</p>
+        <div class="tools"><span>Python</span><span>DSP</span></div>
+      </div>
+      <div class="module">
+        <span class="m-num">[ P05 ]</span>
+        <h3>Portafolio web</h3>
+        <p>Este sitio: HTML/CSS/JS publicado con GitHub Pages; la galería de renders y certificaciones se genera con scripts de Python.</p>
+        <div class="tools"><span>HTML/CSS/JS</span><span>GitHub Pages</span><span>Python</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== SKILLS ===== -->
   <section id="skills" class="reveal">
     <div class="sec-head">
-      <span class="num">04</span>
+      <span class="num">05</span>
       <span class="label">Capacidades técnicas</span>
     </div>
     <div class="skills-grid">
-      <div class="skill-cell"><div class="cat">Ingeniería & CAD</div><div class="items">SolidWorks · Fusion 360 · AutoCAD</div></div>
-      <div class="skill-cell"><div class="cat">Datos & BI</div><div class="items">Power BI · Microsoft Fabric · Excel avanzado</div></div>
-      <div class="skill-cell"><div class="cat">Automatización</div><div class="items">Power Automate · n8n · VS Code · Claude Code</div></div>
-      <div class="skill-cell"><div class="cat">Programación</div><div class="items">Python · MATLAB · C++ · JavaScript · PowerShell</div></div>
-      <div class="skill-cell"><div class="cat">Sistemas empresariales</div><div class="items">SAP · Oracle</div></div>
-      <div class="skill-cell"><div class="cat">Control de versiones</div><div class="items">Git · GitHub</div></div>
+      <div class="skill-cell"><div class="cat">Ingeniería & CAD</div><div class="items">SolidWorks · Fusion 360 (incl. API de Python) · AutoCAD · KiCad</div></div>
+      <div class="skill-cell"><div class="cat">Datos & BI</div><div class="items">Power BI (modelos semánticos, DAX, semantic-link-labs) · Microsoft Fabric (PySpark, Lakehouse, Delta Lake, Direct Lake, pipelines) · Excel avanzado</div></div>
+      <div class="skill-cell"><div class="cat">Automatización & IA</div><div class="items">Power Automate · n8n · Docker · Azure Document Intelligence · agentes de IA (Claude Code, MCP) · VS Code</div></div>
+      <div class="skill-cell"><div class="cat">Programación</div><div class="items">Python (pandas, PySpark, APIs REST) · MATLAB · C++ · JavaScript · PowerShell</div></div>
+      <div class="skill-cell"><div class="cat">Sistemas empresariales & BD</div><div class="items">SAP · Oracle · PostgreSQL · Microsoft Graph</div></div>
+      <div class="skill-cell"><div class="cat">Control de versiones</div><div class="items">Git · GitHub · GitHub Pages</div></div>
     </div>
     <div class="cert-row">
       <a class="cert" href="Certificate C-E2G4WDL536.pdf" data-src="renders/certs/Certificate C-E2G4WDL536.png" data-pdf="Certificate C-E2G4WDL536.pdf" data-cap="SOLIDWORKS Design Associate (CSWA) · 9 abr 2025" title="SOLIDWORKS Design Associate · 9 abr 2025">CSWA <span class="cert-date">04·25</span></a>
@@ -739,7 +782,7 @@
 
   <!-- ===== CONTACTO ===== -->
   <section id="contact" class="contact reveal" style="border-bottom:none">
-    <span class="label">05 · Contacto</span>
+    <span class="label">06 · Contacto</span>
     <h2 style="margin-top:20px">Construyamos<br>algo juntos.</h2>
     <a href="mailto:erick.reynaesp@uanl.edu.mx" class="email">erick.reynaesp@uanl.edu.mx</a>
     <div class="contact-links">
